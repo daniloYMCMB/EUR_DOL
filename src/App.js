@@ -20,6 +20,14 @@ class App extends Component {
   componentDidMount() {
     //Called after the component has been rendered into the page
     console.log("componentDidMount")
+    fetch('http://data.fixer.io/api/latest?access_key=db795dc8cc087ef12207d1a560100f78&format=1?base=USD&symbols=EUR')
+      .then(res => res.json())
+      .then(json => {
+        this.setState({
+          isLoaded: true,
+          items: json
+        })
+      })
   }
 
   usdeur() {
