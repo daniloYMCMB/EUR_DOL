@@ -71,7 +71,7 @@ class App extends Component {
     });
     console.log(nf.format(this.refs.usd.value));
  
-    this.usdeur()
+    //this.usdeur()
   }
 
 

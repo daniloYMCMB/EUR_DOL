@@ -12,6 +12,7 @@
   border-right: none;
   background: gray;
   text-align: center;
+  transition: .3s linear;
 }
 
 .Converter-box {
@@ -21,6 +22,7 @@
   display: -o-flex;
   display: flex;
   justify-content: center;
+  transition: .7s linear;
 }
 
 .Converter-box input {
@@ -28,6 +30,7 @@
   width: 200px;
   height: 20px;
   text-align: center;
+  transition: .3s ease-in;
 }
 
 .Converter-submit {
@@ -44,7 +47,7 @@
     flex-direction: column;
   }
   .Converter-box input {
-    width: 100%;
+    width: 93%;
   }
 }
 

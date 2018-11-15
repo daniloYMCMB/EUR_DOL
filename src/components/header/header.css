@@ -45,6 +45,7 @@ li {
 	height: 20px;
 	background: gray;
 	margin: 10px auto;
+	transition: .7s linear;
 }
 
 @media screen and (max-width: 500px) {
