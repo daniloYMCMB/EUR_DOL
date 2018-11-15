@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Header from './components/header/header';
+import Blog from './components/blog/blog';
 
 class App extends Component {
 
@@ -45,7 +47,7 @@ class App extends Component {
     var eu = itemsRateEUR;
     var calculo;
 
-    calculo = usdInput * this.state.eu;
+    calculo = usdInput * eu;
     var euInput = document.getElementById("eu");
     euInput.value = calculo.toFixed(4);
   }
@@ -79,20 +81,24 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="Container">
-          <form action="">
-            <input ref="usd" id="usd" type="number" step="0.0001" placeholder="USD / 1" 
-              onChange={ (e) => {this.handleUSD(e); } } />
-            
-            
-            <input id="eu" type="text" placeholder="EURO / 0,88257" disabled/>
 
-            <button onClick={ (e) => {this.handleClick(e); } }>
+        <Header />
+
+        <div className="Converter">
+          <form action="">
+            <div className="Converter-box">
+              <input ref="usd" id="usd" type="number" step="0.0001" placeholder="USD / 1" 
+                onChange={ (e) => {this.handleUSD(e); } } />
+              <input id="eu" type="text" placeholder="EURO / 0,88257" disabled/>
+            </div>
+            <button className="Converter-submit" onClick={ (e) => {this.handleClick(e); } }>
               CALCULATE
             </button>
-
           </form>
         </div>
+
+        <Blog />
+
       </div>
     );
   }

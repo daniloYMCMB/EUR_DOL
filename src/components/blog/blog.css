@@ -1,0 +1,29 @@
+.Blog-news {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: space-evenly;
+	padding: 30px 0px ;
+	background: blue;
+}
+
+.Blog-new {
+	height: 50px;
+	background: gray;
+	width: 20%;
+	text-align: center;
+	margin-top: 10px;
+}
+
+@media screen and (max-width: 500px) {
+	.Blog-news {
+		flex-direction: column;
+		justify-content: center;
+	}
+	.Blog-new {
+		width: 90%;
+		margin: 10px auto;
+	}
+}
