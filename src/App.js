@@ -8,7 +8,9 @@ class App extends Component {
     super(props);
       this.state = {
         usd: 0,
-        eu: 0.87912,
+        eu: 0.88257,
+        items: {},
+        inputNumeric: '',
       }
   }
 
@@ -25,19 +27,27 @@ class App extends Component {
       .then(json => {
         this.setState({
           isLoaded: true,
-          items: json
+          items: json,
         })
       })
+
   }
 
   usdeur() {
-    var usd = this.refs.usd.value;
-    var eu = this.state.eu;
+    var usdInput = this.refs.usd.value;
+
+    var items = this.state.items;
+    var rates = items.rates;
+    for (const rate in rates) {
+      var itemsRateEUR = rates[rate]
+    }
+    
+    var eu = itemsRateEUR;
     var calculo;
 
-    calculo = usd * eu;
+    calculo = usdInput * this.state.eu;
     var euInput = document.getElementById("eu");
-    var total = euInput.value = calculo;
+    euInput.value = calculo.toFixed(4);
   }
 
   handleClick(e) {
@@ -46,16 +56,37 @@ class App extends Component {
   }
 
   handleUSD(e) {
+    this.refs.usd.value = this.refs.usd.value
+      .replace(/[^\d.]/g, '')             // numbers and decimals only
+      .replace(/(^[\d]{7})[\d]/g, '$1')   // not more than 2 digits at the beginning
+      .replace(/(\..*)\./g, '$1')         // decimal can't exist more than once
+      .replace(/(\.[\d]{4})./g, '$1')   // not more than 4 digits after decimal
+      
+    var nf = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      maximumFractionDigits: 2
+    });
+    console.log(nf.format(this.refs.usd.value));
+ 
     this.usdeur()
   }
 
+
   render() {
+
+    var { isLoaded, items } = this.state;
+
     return (
       <div className="App">
         <div className="Container">
           <form action="">
-            <input ref="usd" type="text" placeholder="USD / 1" onChange={ (e) => {this.handleUSD(e); } }/>
-            <input id="eu" type="text" placeholder="EURO / 0,8791" disabled/>
+            <input ref="usd" id="usd" type="number" step="0.0001" placeholder="USD / 1" 
+              onChange={ (e) => {this.handleUSD(e); } } />
+            
+            
+            <input id="eu" type="text" placeholder="EURO / 0,88257" disabled/>
+
             <button onClick={ (e) => {this.handleClick(e); } }>
               CALCULATE
             </button>
